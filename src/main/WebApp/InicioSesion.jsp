@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="msg" scope="session" type="java.lang.String" class="java.lang.String"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,14 +36,17 @@
                     <%if(session.getAttribute("noExiste")!=null){%>
                     <div class="text-danger mb-2"><%=session.getAttribute("noExiste")%></div>
                     <%}%>
-                    <%session.removeAttribute("noExiste"); session.invalidate();%>
 
+                    <%if(msg.equals("Exitoso")){%>
+                    <div class="text-success mb-2">Se registró correctamente!</div>
+                    <%}%>
+                    <%session.invalidate();%>
                 <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Ingresar</button>
                 </form>
                 <br>
-                <center><button type="submit" data-bs-toggle="modal" class="btn btn-link" data-bs-target="#ventana2">
+                <center><a href="<%=request.getContextPath()%>/?action=register" type="button" class="btn btn-link" >
                     Soy nuevo y quiero registrarme
-                </button></center>
+                </a></center>
                 <br>
         </div>
     </div>

@@ -19,7 +19,6 @@
 <!-- Banner presentación -->
 <html>
 
-
 <div class="slider_carr">
     <ul>
         <li><img src="images/fondo1.jpg" alt=""></li>
