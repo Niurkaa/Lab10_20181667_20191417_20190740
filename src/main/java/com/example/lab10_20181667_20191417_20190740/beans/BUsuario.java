@@ -9,6 +9,7 @@ public class BUsuario {
     private String correo;
     private String especialidad;
 
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -64,4 +65,6 @@ public class BUsuario {
     public void setEspecialidad(String especialidad) {
         this.especialidad = especialidad;
     }
+
+
 }
