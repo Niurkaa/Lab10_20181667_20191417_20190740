@@ -17,9 +17,9 @@ public class ViajesDao extends BaseDao {
         ArrayList<Viaje> viajes = new ArrayList<>();
         String sql = null;
         if(ciudadOrigen==null || ciudadDestino==null) {
-            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario where u.idUsuario = ?";
+            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario inner join seguro s on v.Seguro_idSeguro = s.idSeguro where u.idUsuario = ?";
         }else {
-            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario where (v.ciudadDestino like ? or v.ciudadOrigen like ?) and u.idUsuario = ?";
+            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario inner join seguro s on v.Seguro_idSeguro = s.idSeguro where (v.ciudadDestino like ? or v.ciudadOrigen like ?) and u.idUsuario = ?";
         }
 
         try (Connection conn = this.getConnection();
@@ -48,7 +48,7 @@ public class ViajesDao extends BaseDao {
                         usuario.setIdUsuario(resultSet.getInt(8));
                         viaje.setUsuario(usuario);
                         Seguro seguro = new Seguro();
-                        seguro.setId(resultSet.getInt(9));
+                        seguro.setNombre(resultSet.getString(19));
                         viaje.setSeguro(seguro);
                         viajes.add(viaje);
                     }
