@@ -38,6 +38,20 @@ public class IndexServlet extends HttpServlet {
                     RequestDispatcher agregar = request.getRequestDispatcher("AñadirViaje.jsp");
                     agregar.forward(request,response);
                     break;
+                case "editar":
+                    String idViaje = request.getParameter("idViaje");
+                    ArrayList<Seguro> seguro = viajesDao.listarS();
+                    Viaje viaje = viajesDao.buscarViajePorId(idViaje);
+                    request.setAttribute("listaSeguros",seguro);
+                    request.setAttribute("viaje",viaje);
+                    RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
+                    editar.forward(request,response);
+                    break;
+                case "eliminar":
+                    String idViaje1 = request.getParameter("idViaje");
+                    viajesDao.eliminar(idViaje1);
+                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                    break;
             }
         }
 
@@ -80,6 +94,27 @@ public class IndexServlet extends HttpServlet {
                     int id1 = Integer.parseInt(id);
                     if (id1 != 0) {
                         viajesDao.anadir(fechaViaje, fechaReserva, seguro, numBoleto, costo, id1,ciudadDestino,ciudadOrigen);
+                        response.sendRedirect(request.getContextPath()+"/IndexServlet");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error al convertir tipo de dato");
+                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                }
+                break;
+            case "actualizar":
+                try {
+                    String idViaje = request.getParameter("idViaje");
+                    String fechaViaje = request.getParameter("fechaViaje");
+                    String fechaReserva = request.getParameter("fechaReserva");
+                    String idSeguro = request.getParameter("seguro");
+                    int seguro = Integer.parseInt(idSeguro);
+                    String boletos = request.getParameter("numBoletos");
+                    int numBoleto = Integer.parseInt(boletos);
+                    String costoTotal = request.getParameter("costo");
+                    double costo = Double.parseDouble(costoTotal);
+                    int id1 = Integer.parseInt(id);
+                    if (id1 != 0) {
+                        viajesDao.editar(idViaje, fechaViaje, fechaReserva, seguro, numBoleto, costo, id1,ciudadDestino,ciudadOrigen);
                         response.sendRedirect(request.getContextPath()+"/IndexServlet");
                     }
                 } catch (NumberFormatException e) {

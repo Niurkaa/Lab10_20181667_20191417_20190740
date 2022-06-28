@@ -155,5 +155,40 @@ public class ViajesDao extends BaseDao {
         }
 
     }
+    public Viaje buscarViajePorId(String id){
+        Viaje viaje = null;
+        String sql = "select * from viaje v inner join seguro s on v.Seguro_idSeguro = s.idSeguro where v.idViaje = ?";
+        try (Connection conn = this.getConnection();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1,id);
+
+            try (ResultSet resultSet = pstmt.executeQuery()) {
+                while (resultSet.next()) {
+                    viaje = new Viaje();
+                    viaje.setId(resultSet.getString(1));
+                    viaje.setFechaViaje(resultSet.getString(2));
+                    viaje.setCiudadOrigen(resultSet.getString(3));
+                    viaje.setCiudadDestino(resultSet.getString(4));
+                    viaje.setCosto(resultSet.getDouble(5));
+                    viaje.setFechaReserva(resultSet.getString(6));
+                    viaje.setNumBoleto(resultSet.getInt(7));
+                    BUsuario usuario = new BUsuario();
+                    usuario.setIdUsuario(resultSet.getInt(8));
+                    viaje.setUsuario(usuario);
+                    Seguro seguro = new Seguro();
+                    seguro.setNombre(resultSet.getString(11));
+                    viaje.setSeguro(seguro);
+                }
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Hubo un error en la conexión!");
+            e.printStackTrace();
+        }
+
+
+        return viaje;
+    }
 
 }
