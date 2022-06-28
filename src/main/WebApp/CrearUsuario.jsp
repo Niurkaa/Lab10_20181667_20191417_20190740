@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="msg" scope="session" type="java.lang.String" class="java.lang.String"/>
+<link rel="shortcut icon" href="<%=request.getContextPath()%>/images/logo2.ico" type="image/x-icon">
 <!DOCTYPE html>
 <html lang="en">
 <head>
