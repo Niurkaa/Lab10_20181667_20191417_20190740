@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!--Navbar-->
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
 
     <img src="images/logo.png" width="80" height="85 " align="left"/>
@@ -26,8 +28,5 @@
 
         </ul>
 
-
-
     </div>
 </nav>
-

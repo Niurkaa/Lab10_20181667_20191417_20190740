@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:useBean id="viajes" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Viaje>"/>
 <jsp:include page="head.jsp">
     <jsp:param name="title" value="index"/>
 </jsp:include>
@@ -16,7 +15,7 @@
 <jsp:include page="navbar.jsp">
     <jsp:param name="page" value=""/>
 </jsp:include>
-
+<jsp:useBean id="viajes" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Viaje>"/>
 <!-- Banner presentación -->
 <html>
 
@@ -38,7 +37,7 @@
         margin: 10px ;
         width: 1200px;
     }
-    table{
+    table.clase{
         background-color: white;
         text-align: center;
         border-collapse: collapse;
@@ -49,42 +48,71 @@
         top: 300%;
         margin-top: 1px;
     }
-    th, td{
+    th.clase, td.clase{
         padding: 20px;
     }
-    thead{
+    thead.clase{
         background-color: #000000;
         border-bottom: solid 5px #353837;
         color: white;
     }
-    tr:nth-child(even){
+    tr.clase:nth-child(even){
         background-color: #ddd;
     }
-    tr:hover td{
+    tr.clase:hover td{
         background-color: #706e6e;
         color: white;
     }
 
 </STYLE>
+<br><br><br>
+<center>
+<table>
+    <tr>
+        <td >
+            <div  class="cold md" >
+                <input class="form-control me-2" type="search" placeholder="Ingrese Origen" aria-label="Ingrese Origen">
+            </div>
+        </td>
 
+        <td>
+            <div  class="cold md" >
+                <input class="form-control me-2" type="search" placeholder="Ingrese Destino" aria-label="Ingrese Destino">
+            </div>
+
+        </td>
+        <td>
+            <a  type="submit"
+                name="Buscar"
+                color="white"
+                class="btn btn-tele border-start-1"
+                 ><b>Buscar</b></a>
+        </td>
+
+
+
+    </tr>
+</table>
+</center>
+<br><br>
 <br><br>
 <center>
-    <h1><b><font color="white">LISTA DE VIAJES</font> </b></h1>
+    <h1><b><font color="Black">LISTA DE VIAJES</font> </b></h1>
 </center>
-
+<br>
 <center>
     <div id="main-container" >
 
-        <table>
-            <thead>
-            <tr>
-                <th>ID</th><th>Fecha de reserva</th><th>Fecha de vuelo</th><th>Cuidad origen</th><th> Ciudad destino</th><th>Empresa de seguro</th> <th>N° boletos</th><th>Costo total</th>
+        <table class="clase">
+            <thead class="clase">
+            <tr class="clase">
+                <th class="clase">ID</th ><th class="clase">Fecha de reserva</th><th class="clase">Fecha de vuelo</th><th class="clase">Cuidad origen</th><th class="clase"> Ciudad destino</th><th class="clase">Empresa de seguro</th> <th class="clase">N° boletos</th><th class="clase">Costo total</th>
             </tr>
             </thead>
-            <tbody>
+            <tbody class="clase">
             <%for (Viaje viaje : viajes){%>
             <tr>
-                <td><%=viaje.getId()%></td><td><%=viaje.getFechaReserva()%></td><td><%=viaje.getFechaViaje()%></td><td><%=viaje.getCiudadOrigen()%></td><td><%=viaje.getCiudadDestino()%></td><td><%=viaje.getSeguro().getNombre()%></td><td><%=viaje.getNumBoleto()%></td><td>S/. <%=viaje.getCosto()%></td>
+                <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase">S/. <%=viaje.getCosto()%></td>
             </tr>
             <%}%>
             </tbody>
