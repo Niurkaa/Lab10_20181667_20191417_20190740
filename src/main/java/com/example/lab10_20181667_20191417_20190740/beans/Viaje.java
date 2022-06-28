@@ -1,14 +1,15 @@
-package Beans;
+package com.example.lab10_20181667_20191417_20190740.beans;
+
 
 public class Viaje {
     private String id;
     private String fechaViaje;
-    private String fechaOrigen;
+    private String fechaReserva;
     private String ciudadOrigen;
     private String ciudadDestino;
     private int numBoleto;
     private double costo;
-    private Usuario usuario;
+    private BUsuario usuario;
     private Seguro seguro;
 
     public String getId() {
@@ -27,12 +28,12 @@ public class Viaje {
         this.fechaViaje = fechaViaje;
     }
 
-    public String getFechaOrigen() {
-        return fechaOrigen;
+    public String getFechaReserva() {
+        return fechaReserva;
     }
 
-    public void setFechaOrigen(String fechaOrigen) {
-        this.fechaOrigen = fechaOrigen;
+    public void setFechaReserva(String fechaReserva) {
+        this.fechaReserva = fechaReserva;
     }
 
     public String getCiudadOrigen() {
@@ -67,11 +68,11 @@ public class Viaje {
         this.costo = costo;
     }
 
-    public Usuario getUsuario() {
+    public BUsuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(BUsuario usuario) {
         this.usuario = usuario;
     }
 

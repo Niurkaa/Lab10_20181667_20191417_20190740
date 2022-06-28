@@ -1,4 +1,4 @@
-package Beans;
+package com.example.lab10_20181667_20191417_20190740.beans;
 
 public class Seguro {
     private int id;
