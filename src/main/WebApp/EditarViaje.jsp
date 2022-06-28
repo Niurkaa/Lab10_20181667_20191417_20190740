@@ -1,4 +1,5 @@
-<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %><%--
+<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %>
+<%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: Niurka
   Date: 28/06/2022
@@ -10,6 +11,7 @@
 <jsp:useBean id="listaSeguros" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Seguro>"/>
 <jsp:useBean id="viaje" scope="request" type="com.example.lab10_20181667_20191417_20190740.beans.Viaje"/>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%LocalDate lo_date = LocalDate.now();  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,13 +36,13 @@
                 <tr>
                     <td>0
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="ciudad1" value="<%=viaje.getCiudadOrigen()%>">
+                            <input type="text" class="form-control" name="ciudad1" value="<%=viaje.getCiudadOrigen()%>" required>
                             <label>Ciudad de Origen</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" name="ciudad2" value="<%=viaje.getCiudadDestino()%>">
+                            <input type="text" class="form-control" name="ciudad2" value="<%=viaje.getCiudadDestino()%>" required>
                             <label>Ciudad de destino</label>
                         </div>
 
@@ -49,13 +51,13 @@
                 <tr>
                     <td>
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaViaje" value="<%=viaje.getFechaViaje()%>">
+                            <input type="date" class="form-control" name="fechaViaje" value="<%=viaje.getFechaViaje()%>" min="<%=lo_date%>">
                             <label> Fecha de viaje</label>
                         </div>
                     </td>
                     <td>
                         <div class="form-floating mb-3">
-                            <input type="date" class="form-control" name="fechaReserva"  value="<%=viaje.getFechaReserva()%>">
+                            <input type="date" class="form-control" name="fechaReserva"  value="<%=viaje.getFechaReserva()%>" max="<%=lo_date%>">
                             <label> Fecha de reserva</label>
                         </div>
                     </td>
@@ -71,7 +73,7 @@
                 </tr>
                 <tr>
                     <td><div class="form-floating mb-3">
-                        <input type="number" class="form-control" name="numBoletos" value = "<%=viaje.getNumBoleto()%>">
+                        <input type="number" class="form-control" name="numBoletos" value = "<%=viaje.getNumBoleto()%>" min="0">
                         <label> N° de boletos</label></div></td>
                     <td>
                         <div class="form-floating mb-3">
