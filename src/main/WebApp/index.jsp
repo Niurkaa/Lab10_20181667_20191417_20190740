@@ -88,8 +88,6 @@
                  ><b>Buscar</b></a>
         </td>
 
-
-
     </tr>
 </table>
 </center>
@@ -105,19 +103,33 @@
         <table class="clase">
             <thead class="clase">
             <tr class="clase">
-                <th class="clase">ID</th ><th class="clase">Fecha de reserva</th><th class="clase">Fecha de vuelo</th><th class="clase">Cuidad origen</th><th class="clase"> Ciudad destino</th><th class="clase">Empresa de seguro</th> <th class="clase">N° boletos</th><th class="clase">Costo total</th>
+                <th class="clase">ID</th ><th class="clase">Fecha de reserva</th><th class="clase">Fecha de vuelo</th><th class="clase">Cuidad origen</th><th class="clase"> Ciudad destino</th><th class="clase">Empresa de seguro</th> <th class="clase">N° boletos</th><th class="clase">Costo total</th><th class="clase">Editar</th> <th class="clase">Eliminar</th>
             </tr>
             </thead>
-            <tbody class="clase">
             <%for (Viaje viaje : viajes){%>
             <tr>
                 <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase">S/. <%=viaje.getCosto()%></td>
+                <td> <button href="" type="submit"
+                        name="Buscar"
+                        color="white"
+                        class="btn btn-tele border-start-1"
+            ><b>Editar</b></button> </td>
+                <td> <button href="" type="submit"
+                             name="Buscar"
+                             color="white"
+                             class="btn btn-tele border-start-1"
+                ><b>Eliminar</b></button> </td>
             </tr>
             <%}%>
-            </tbody>
 
 
         </table>
+        <br><br>
+        <a  href="" type="submit"
+        name="Buscar"
+        color="white"
+        class="btn btn-tele border-start-1"
+        ><b>Añadir Viaje</b></a>
 
     </div></center>
 
