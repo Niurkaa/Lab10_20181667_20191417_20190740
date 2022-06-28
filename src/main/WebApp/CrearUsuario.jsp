@@ -19,9 +19,13 @@
     td{
         padding: 10px;
     }
+    body {
+        background-size: cover;
+        background-position: center center;
+    }
 </style>
 
-<body background="images/fondo2.jpg">
+<body background="images/banner2.jpg">
 <div class="modal-dialog modalCenter">
     <div class="modal-content" style="background: black">
         <div class="modal-body" >

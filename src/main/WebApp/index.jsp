@@ -23,10 +23,11 @@
 
 <div class="slider_carr">
     <ul>
-        <li><img src="images/fondo1.jpg" alt=""></li>
-        <li><img src="images/fondo3.jpg" alt=""></li>
-        <li><img src="images/fondo1.jpg" alt=""></li>
-        <li><img src="images/fondo3.jpg" alt=""></li>
+        <li><img src="images/bannerbrasil.jpeg" alt=""></li>
+        <li><img src="images/dubai.jpg" alt=""></li>
+        <li><img src="images/cancun.jpg" alt=""></li>
+        <li><img src="images/dubai.jpg" alt=""></li>
+
     </ul>
 </div>
 <!---->
@@ -113,12 +114,12 @@
             <%for (Viaje viaje : viajes){%>
             <tr class="clase">
                 <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase">S/. <%=viaje.getCosto()%></td>
-                <td> <button href="" type="submit"
+                <td> <a href="/EditarServlet" type="submit"
                         name="Buscar"
                         color="white"
                         class="btn btn-tele border-start-1"
-            ><b>Editar</b></button> </td>
-                <td> <button href="" type="submit"
+            ><b>Editar</b></a> </td>
+                <td> <button  type="submit"
                              name="Buscar"
                              color="white"
                              class="btn btn-tele border-start-1"

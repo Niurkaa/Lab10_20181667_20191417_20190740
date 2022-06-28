@@ -1,7 +1,7 @@
 <%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %>
 <%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
-  User: Valeria
+  User: Niurka
   Date: 28/06/2022
   Time: 03:07
   To change this template use File | Settings | File Templates.
@@ -18,7 +18,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </head>
-<body>
+
 <body background="images/fondo2.jpg">
 <div class="modal-dialog modalCenter">
     <div class="modal-content" style="background: black">
