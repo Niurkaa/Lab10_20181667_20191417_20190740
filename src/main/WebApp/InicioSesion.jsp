@@ -19,26 +19,34 @@
 <div class="modal-dialog modalCenter">
     <div class="modal-content" style="background: black">
         <div class="modal-body" >
-            <form>
                 <div class="d-flex justify-content-center"><img src="images/logo.png" style="width: 50%; height: 250px" class="img-fluid">
                 </div>
                 <br>
+                <form class="form-signin" method="post" action="<%=request.getContextPath()%>/?action=login" >
                 <h4 class="d-flex justify-content-center" style="color:white">Bienvenido TeleViajero</h4>
                 <div class="form-floating mb-3">
-                    <input type="text" class="form-control" id="floatingInput1" placeholder="User">
+                    <input type="text" name="user" required="required" class="form-control" id="floatingInput1" placeholder="User">
                     <label for="floatingInput1">Usuario</label>
                 </div>
                 <div class="form-floating mb-3">
-                    <input type="password" class="form-control" id="floatingInput2" placeholder="Password">
+                    <input type="password" name="pass" required="required" class="form-control" id="floatingInput2" placeholder="Password">
                     <label for="floatingInput2">Contraseña</label>
                 </div>
-                <a href="Pagina_principal.html" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Ingresar</a>
+                    <%if(session.getAttribute("noExiste")!=null){%>
+                    <div class="text-danger mb-2"><%=session.getAttribute("noExiste")%></div>
+                    <%}%>
+                    <%session.removeAttribute("noExiste"); session.invalidate();%>
+                    <!--div class="mb-3"><button class="btn btn-primary d-block mb-3" type="submit"
+                                              style="background:#E72D4B; border-color:#E72D4B">
+                        <strong>Ingresar</strong>
+                    </button></div-->
+                <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Ingresar</button>
+                </form>
                 <br>
                 <center><button type="button" data-bs-toggle="modal" class="btn btn-link" data-bs-target="#ventana2">
                     Terminos y condiciones
                 </button></center>
                 <br>
-            </form>
         </div>
     </div>
 </div>
