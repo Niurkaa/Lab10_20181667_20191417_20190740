@@ -66,30 +66,32 @@
 </STYLE>
 <br><br><br>
 <center>
+    <form method="post" action="<%=request.getContextPath()%>/IndexServlet?action=buscar">
 <table>
     <tr>
         <td >
             <div  class="cold md" >
-                <input class="form-control me-2" type="search" placeholder="Ingrese Origen" aria-label="Ingrese Origen">
+                <input class="form-control me-2" type="search" placeholder="Ingrese Origen" aria-label="Ingrese Origen" name = "ciudad1">
             </div>
         </td>
 
         <td>
             <div  class="cold md" >
-                <input class="form-control me-2" type="search" placeholder="Ingrese Destino" aria-label="Ingrese Destino">
+                <input class="form-control me-2" type="search" placeholder="Ingrese Destino" aria-label="Ingrese Destino" name="ciudad2">
             </div>
 
         </td>
         <td>
-            <a  type="submit"
-                name="Buscar"
+            <button  type="submit"
+
                 color="white"
                 class="btn btn-tele border-start-1"
-                 ><b>Buscar</b></a>
+                 ><b>Buscar</b></button>
         </td>
 
     </tr>
 </table>
+    </form>
 </center>
 <br><br>
 <br><br>
