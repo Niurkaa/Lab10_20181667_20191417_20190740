@@ -12,7 +12,7 @@
 
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
 
-    <img src="images/logo.png" width="80" height="85 " align="left"/>
+    <img src="images/logosinfondo.png" width="80" height="85 " align="left"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
