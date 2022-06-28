@@ -1,4 +1,5 @@
-<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %><%--
+<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %>
+<%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: Valeria
   Date: 28/06/2022
@@ -8,6 +9,7 @@
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/logo2.ico" type="image/x-icon">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:useBean id="listaSeguros" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Seguro>"/>
+<%LocalDate lo_date = LocalDate.now();  %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -43,13 +45,13 @@
                     <tr>
                         <td>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control"  name="fechaViaje" min="">
+                                <input type="date" class="form-control"  name="fechaViaje" min="<%=lo_date%>">
                                 <label> Fecha de viaje</label>
                             </div>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control"  name="fechaReserva">
+                                <input type="date" class="form-control"  name="fechaReserva" max="<%=lo_date%>">
                                 <label> Fecha de reserva</label>
                             </div>
                         </td>
@@ -66,11 +68,11 @@
                     </tr>
                     <tr>
                         <td><div class="form-floating mb-3">
-                            <input type="number" class="form-control" name="numBoletos" >
+                            <input type="number" class="form-control" name="numBoletos" min="0">
                             <label> N° de boletos</label></div></td>
                         <td>
                             <div class="form-floating mb-3">
-                            <input type="text" class="form-control"  name="costo">
+                            <input type="text" class="form-control"  name="costo" required>
                                 <label> Costo Total (S/.)</label></div>
                         </td>
                     </tr>

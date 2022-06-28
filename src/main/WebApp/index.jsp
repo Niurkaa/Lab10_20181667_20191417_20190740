@@ -1,4 +1,5 @@
-<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Viaje" %><%--
+<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Viaje" %>
+
   Created by IntelliJ IDEA.
   User: Niurka
   Date: 27/06/2022
@@ -16,6 +17,7 @@
     <jsp:param name="page" value=""/>
 </jsp:include>
 <jsp:useBean id="viajes" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Viaje>"/>
+
 <!-- Banner presentación -->
 <html>
 
