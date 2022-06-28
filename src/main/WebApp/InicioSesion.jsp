@@ -43,29 +43,14 @@
                 <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Ingresar</button>
                 </form>
                 <br>
-                <center><button type="button" data-bs-toggle="modal" class="btn btn-link" data-bs-target="#ventana2">
-                    Terminos y condiciones
+                <center><button type="submit" data-bs-toggle="modal" class="btn btn-link" data-bs-target="#ventana2">
+                    Soy nuevo y quiero registrarme
                 </button></center>
                 <br>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="ventana2" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4>Soy nuevo y deseo registrarme</h4>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-            </div>
-            <div class="modal-footer">
-                <a class="btn btn-danger botonInicio border border-primary" style=" background-color: blue; color: white">Acepto</a>
-            </div>
-        </div>
-    </div>
 </div>
 
 </body>

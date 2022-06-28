@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <nav class="navbar sticky-top navbar-expand-lg navbar-dark">
 
-    <img src="images/logo.png" width="300px" height="80px " align="left"/>
+    <img src="images/logo.png" width="80" height="85 " align="left"/>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -18,13 +18,15 @@
 
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link <%=request.getParameter("page").equals("index")? "active": "" %>" href="<%=request.getContextPath()%>/Humanos"><b>Humanos</b></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link <%=request.getParameter("page").equals("Superviventes")? "active": "" %>" href="<%=request.getContextPath()%>/Supervivientes"><b>Supervivientes</b></a>
+                <a  type="submit"
+                    name="Cerrar Sesion"
+                    class="btn btn-tele border-start-1"
+                    class="nav-link
+                <%=request.getParameter("page").equals("index")? "active": "" %>" href="<%=request.getContextPath()%>/CerrarSesion"><b>Cerrar Sesión</b></a>
             </li>
 
         </ul>
+
 
 
     </div>
