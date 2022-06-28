@@ -127,11 +127,11 @@ public class ViajesDao extends BaseDao {
             pstmt.setString(2,fechaReserva);
             pstmt.setInt(3,seguro);
             pstmt.setInt(4,numBoleto);
-            pstmt.setDouble(6,costo);
-            pstmt.setInt(7, usuario);
-            pstmt.setString(8,ciudadDestino);
-            pstmt.setString(9,ciudadOrigen);
-
+            pstmt.setDouble(5,costo);
+            pstmt.setInt(6, usuario);
+            pstmt.setString(7,ciudadDestino);
+            pstmt.setString(8,ciudadOrigen);
+            pstmt.setString(9,idViaje);
 
 
             pstmt.executeUpdate();

@@ -114,12 +114,13 @@
             <%for (Viaje viaje : viajes){%>
             <tr class="clase">
                 <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase">S/. <%=viaje.getCosto()%></td>
-                <td> <a href="/EditarServlet" type="submit"
+                <td> <a href="<%=request.getContextPath()%>/IndexServlet?action=editar&idViaje=<%=viaje.getId()%>" type="button"
                         name="Buscar"
                         color="white"
                         class="btn btn-tele border-start-1"
             ><b>Editar</b></a> </td>
-                <td> <button  type="submit"
+                <td> <button href="<%=request.getContextPath()%>/IndexServlet?action=eliminar&idViaje=<%=viaje.getId()%>"
+                        type="button"
                              name="Buscar"
                              color="white"
                              class="btn btn-tele border-start-1"
