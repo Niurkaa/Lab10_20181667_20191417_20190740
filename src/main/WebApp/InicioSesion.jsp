@@ -36,10 +36,7 @@
                     <div class="text-danger mb-2"><%=session.getAttribute("noExiste")%></div>
                     <%}%>
                     <%session.removeAttribute("noExiste"); session.invalidate();%>
-                    <!--div class="mb-3"><button class="btn btn-primary d-block mb-3" type="submit"
-                                              style="background:#E72D4B; border-color:#E72D4B">
-                        <strong>Ingresar</strong>
-                    </button></div-->
+
                 <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Ingresar</button>
                 </form>
                 <br>

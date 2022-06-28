@@ -21,8 +21,7 @@
                 <a  type="submit"
                     name="Cerrar Sesion"
                     class="btn btn-tele border-start-1"
-                    class="nav-link
-                <%=request.getParameter("page").equals("index")? "active": "" %>" href="<%=request.getContextPath()%>/CerrarSesion"><b>Cerrar Sesión</b></a>
+                    class="nav-link" href="<%=request.getContextPath()%>/?action=logout"><b>Cerrar Sesión</b></a>
             </li>
 
         </ul>
