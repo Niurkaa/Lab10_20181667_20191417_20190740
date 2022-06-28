@@ -82,8 +82,10 @@
                             <label> Costo Total (S/.)</label></div>
                     </td>
                 </tr>
-                <input type="hidden" name = "idViaje" value="<%=viaje.getId()%>">
-
+                <%if(session.getAttribute("msg")!=null){%>
+                <div class="text-danger mb-2"><%=session.getAttribute("msg")%></div>
+                <%session.removeAttribute("msg");%>
+                <%}%>
                 </tables>
                 <center>
                     <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style=" background-color: black; color: #0d6efd">Editar Viaje</button>

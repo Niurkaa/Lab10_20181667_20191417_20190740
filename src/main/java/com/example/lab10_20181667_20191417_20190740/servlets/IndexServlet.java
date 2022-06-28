@@ -42,7 +42,7 @@ public class IndexServlet extends HttpServlet {
                     agregar.forward(request,response);
                     break;
                 case "editar":
-                    String idViaje = request.getParameter("idViaje");
+                    String idViaje = (String) session.getAttribute("idViaje");
                     ArrayList<Seguro> seguro = viajesDao.listarS();
                     Viaje viaje = viajesDao.buscarViajePorId(idViaje);
                     request.setAttribute("listaSeguros",seguro);
@@ -98,18 +98,23 @@ public class IndexServlet extends HttpServlet {
                         int numBoleto = Integer.parseInt(boletos);
                         String costoTotal = request.getParameter("costo");
                         double costo = Double.parseDouble(costoTotal);
-                        if (usuario.getIdUsuario() != 0) {
+
+                        if (costo> 0) {
                             viajesDao.anadir(fechaViaje, fechaReserva, seguro, numBoleto, costo, usuario.getIdUsuario(),ciudadDestino,ciudadOrigen);
                             response.sendRedirect(request.getContextPath()+"/IndexServlet");
+                        }else{
+                            session.setAttribute("msg", "Costo Total inválido");
+                            response.sendRedirect(request.getContextPath()+"/IndexServlet?action=agregar");
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println("Error al convertir tipo de dato");
-                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
+
+                        session.setAttribute("msg", "Costo Total inválido");
+                        response.sendRedirect(request.getContextPath()+"/IndexServlet?action=agregar");
                     }
                     break;
                 case "actualizar":
                     try {
-                        String idViaje = request.getParameter("idViaje");
+                        String idViaje = (String) session.getAttribute("idViaje");
                         String fechaViaje = request.getParameter("fechaViaje");
                         String fechaReserva = request.getParameter("fechaReserva");
                         String idSeguro = request.getParameter("seguro");
@@ -118,13 +123,16 @@ public class IndexServlet extends HttpServlet {
                         int numBoleto = Integer.parseInt(boletos);
                         String costoTotal = request.getParameter("costo");
                         double costo = Double.parseDouble(costoTotal);
-
-                        viajesDao.editar(idViaje, fechaViaje, fechaReserva, seguro, numBoleto, costo, usuario.getIdUsuario(),ciudadDestino,ciudadOrigen);
-                        response.sendRedirect(request.getContextPath()+"/IndexServlet");
-
+                        if(costo>0){
+                            viajesDao.editar(idViaje, fechaViaje, fechaReserva, seguro, numBoleto, costo, usuario.getIdUsuario(),ciudadDestino,ciudadOrigen);
+                            response.sendRedirect(request.getContextPath()+"/IndexServlet");
+                        }else{
+                            session.setAttribute("msg", "Costo Total inválido");
+                            response.sendRedirect(request.getContextPath()+"/IndexServlet?action=editar");
+                        }
                     } catch (NumberFormatException e) {
-                        System.out.println("Error al convertir tipo de dato");
-                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                        session.setAttribute("msg", "Costo Total inválido");
+                        response.sendRedirect(request.getContextPath()+"/IndexServlet?action=editar");
                     }
                     break;
             }

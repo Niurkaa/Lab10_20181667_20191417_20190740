@@ -82,7 +82,6 @@ public class ViajesDao extends BaseDao {
         for (int i = 0; i < 8; i++ ) {
             codigo += letters[(int) Math.round(Math.random() * 15)];
         }
-        System.out.println(codigo);
         return codigo;
     }
 

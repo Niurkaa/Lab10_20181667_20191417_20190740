@@ -113,9 +113,10 @@
             </tr>
             </thead>
             <%for (Viaje viaje : viajes){%>
+            <%session.setAttribute("idViaje", viaje.getId());%>
             <tr class="clase">
                 <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase"><%=viaje.getCosto()%></td>
-                <td> <a href="<%=request.getContextPath()%>/IndexServlet?action=editar&idViaje=<%=viaje.getId()%>" type="button"
+                <td> <a href="<%=request.getContextPath()%>/IndexServlet?action=editar" type="button"
                         name="Buscar"
                         color="white"
                         class="btn btn-tele border-start-1"
