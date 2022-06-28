@@ -127,7 +127,7 @@
 
         </table>
         <br><br>
-        <a  href="AñadirViajeServlet" type="submit"
+        <a  href="<%=request.getContextPath()%>/IndexServlet?action=agregar" type="button"
         name="Buscar"
         color="white"
         class="btn btn-tele border-start-1"

@@ -63,11 +63,12 @@ public class ViajesDao extends BaseDao {
 
 
     public void anadir(String fechaViaje, String fechaReserva, int seguro, int numBoleto, double costo, int usuario, String ciudadDestino, String ciudadOrigen){
+        String codigo = generarCodigoCompra();
         String sql = "insert into viaje (idViaje, fechaViaje, fechaReserva,ciudadDestino, ciudadOrigen, costo, numBoleto, Usuario_idUsuario, Seguro_idSeguro) values \n" +
-                "((generarCodigoCompra()),?,?,?,?,?,?,?,?)";
+                "(?,?,?,?,?,?,?,?,?)";
         try(Connection conn= this.getConnection();
             PreparedStatement pstmt= conn.prepareStatement(sql)){
-
+            pstmt.setString(1,codigo);
             pstmt.setString(2, fechaViaje);
             pstmt.setString(3,fechaReserva);
             pstmt.setString(4,ciudadDestino);
@@ -87,7 +88,7 @@ public class ViajesDao extends BaseDao {
     public String generarCodigoCompra(){
         String codigo="";
         String[] letters = {"0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F"};
-        for (int i = 0; i < 7; i++ ) {
+        for (int i = 0; i < 8; i++ ) {
             codigo += letters[(int) Math.round(Math.random() * 15)];
         }
         System.out.println(codigo);

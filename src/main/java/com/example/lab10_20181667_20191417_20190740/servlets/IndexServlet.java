@@ -1,6 +1,7 @@
 package com.example.lab10_20181667_20191417_20190740.servlets;
 
 import com.example.lab10_20181667_20191417_20190740.beans.BUsuario;
+import com.example.lab10_20181667_20191417_20190740.beans.Seguro;
 import com.example.lab10_20181667_20191417_20190740.beans.Viaje;
 import com.example.lab10_20181667_20191417_20190740.daos.ViajesDao;
 
@@ -31,6 +32,12 @@ public class IndexServlet extends HttpServlet {
                     RequestDispatcher listar = request.getRequestDispatcher("index.jsp");
                     listar.forward(request, response);
                     break;
+                case "agregar":
+                    ArrayList<Seguro> seguros = viajesDao.listarS();
+                    request.setAttribute("listaSeguros",seguros);
+                    RequestDispatcher agregar = request.getRequestDispatcher("AñadirViaje.jsp");
+                    agregar.forward(request,response);
+                    break;
             }
         }
 
@@ -57,7 +64,27 @@ public class IndexServlet extends HttpServlet {
                     }
                 } catch (NumberFormatException e) {
                     System.out.println("Error al convertir tipo de dato");
-                    response.sendRedirect(request.getContextPath() + "/InicioServlet");
+                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                }
+                break;
+            case "crear":
+                try {
+                    String fechaViaje = request.getParameter("fechaViaje");
+                    String fechaReserva = request.getParameter("fechaReserva");
+                    String idSeguro = request.getParameter("seguro");
+                    int seguro = Integer.parseInt(idSeguro);
+                    String boletos = request.getParameter("numBoletos");
+                    int numBoleto = Integer.parseInt(boletos);
+                    String costoTotal = request.getParameter("costo");
+                    double costo = Double.parseDouble(costoTotal);
+                    int id1 = Integer.parseInt(id);
+                    if (id1 != 0) {
+                        viajesDao.anadir(fechaViaje, fechaReserva, seguro, numBoleto, costo, id1,ciudadDestino,ciudadOrigen);
+                        response.sendRedirect(request.getContextPath()+"/IndexServlet");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Error al convertir tipo de dato");
+                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
                 }
                 break;
         }

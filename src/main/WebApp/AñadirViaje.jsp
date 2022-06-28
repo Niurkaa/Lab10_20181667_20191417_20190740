@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.lab10_20181667_20191417_20190740.beans.Seguro" %><%--
   Created by IntelliJ IDEA.
   User: Valeria
   Date: 28/06/2022
@@ -7,6 +7,7 @@
 --%>
 <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/logo2.ico" type="image/x-icon">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="listaSeguros" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Seguro>"/>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,20 +21,21 @@
 <div class="modal-dialog modalCenter">
     <div class="modal-content" style="background: black">
         <div class="modal-body" >
-            <form>
-                <a href="/IndexServlet "   class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(410px);background-color: black; color: #0d6efd">X</a>
+            <form method="post" action="<%=request.getContextPath()%>/IndexServlet?action=crear">
+                <a href="<%=request.getContextPath()%>/IndexServlet"   class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(410px);background-color: black; color: #0d6efd">X</a>
                 <h4 class="d-flex justify-content-center" style="color:white">Añadir Viaje</h4>
                 <tr>
                        <td>0
                            <div class="form-floating mb-3">
-                               <input type="text" class="form-control"  placeholder="User">
+                               <input type="text" name="ciudad1" class="form-control" required >
                                <label>Ciudad de Origen</label>
                            </div>
                        </td>
                         <td>
                             <div class="form-floating mb-3">
-                                <input type="text" class="form-control"  placeholder="User">
+                                <input type="text" name ="ciudad2" class="form-control" required>
                                 <label>Ciudad de destino</label>
+
                             </div>
 
                         </td>
@@ -41,37 +43,41 @@
                     <tr>
                         <td>
                             <div class="form-floating mb-3">
-                                <input type="date" class="form-control"  placeholder="User">
-                                <label> Fecha</label>
+                                <input type="date" class="form-control"  name="fechaViaje" min="">
+                                <label> Fecha de viaje</label>
                             </div>
                         </td>
                         <td>
                             <div class="form-floating mb-3">
-                            <select name="tipodeZombie" id="tipodeZombie" class="form-control"><br>
+                                <input type="date" class="form-control"  name="fechaReserva">
+                                <label> Fecha de reserva</label>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="form-floating mb-3">
+                            <select name="seguro" class="form-control"><br>
                                 <option selected="yes">---Seleccionar Seguro---</option>
-                                <option>Rimac</option>
-                                <option>Pacifico</option>
-                                <option>La Positiva</option>
-                                <option>Seguro Internacional</option>
-                                <option>Otro</option>
+                                <%for(Seguro seguro: listaSeguros){%>
+                                <option value="<%=seguro.getId()%>"  class="form-control"><%=seguro.getNombre()%></option>
+                                <%}%>
                             </select>
                             </div>
                         </td>
                     </tr>
                     <tr>
                         <td><div class="form-floating mb-3">
-                            <input type="text" class="form-control"  placeholder="N° de boletos">
+                            <input type="number" class="form-control" name="numBoletos" >
                             <label> N° de boletos</label></div></td>
                         <td>
                             <div class="form-floating mb-3">
-                            <input type="text" class="form-control"  placeholder="Costo Total">
+                            <input type="text" class="form-control"  name="costo">
                                 <label> Costo Total (S/.)</label></div>
                         </td>
                     </tr>
 
                 </tables>
                 <center>
-                <a href="/IndexServlet" class="btn btn-danger rounded-pill botonInicio border border-primary" style=" background-color: black; color: #0d6efd">Añadir Viaje</a>
+                <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style=" background-color: black; color: #0d6efd">Añadir Viaje</button>
                 </center>
             </form>
         </div>
