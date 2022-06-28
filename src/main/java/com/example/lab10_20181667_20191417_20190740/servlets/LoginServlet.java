@@ -12,8 +12,19 @@ import java.io.IOException;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher view = request.getRequestDispatcher("InicioSesion.jsp");
-        view.forward(request,response);
+        String action = request.getParameter("action")==null ? "login" : request.getParameter("action");
+        HttpSession session= request.getSession();
+        switch (action){
+            case "logout":
+                session.invalidate();
+                response.sendRedirect(request.getContextPath());
+                break;
+            case "login":
+                RequestDispatcher view = request.getRequestDispatcher("InicioSesion.jsp");
+                view.forward(request,response);
+                break;
+        }
+
     }
 
     @Override
@@ -28,8 +39,13 @@ public class LoginServlet extends HttpServlet {
                 HttpSession session;
                 session= request.getSession();
                 if(alumno.getIdUsuario()!=0){
-                    session.setAttribute("usuarioLog",alumno);
-                    response.sendRedirect(request.getContextPath()+"/InicioServlet");
+                    if(alumno.getEspecialidad().equals("telecomunicaciones")){
+                        session.setAttribute("usuarioLog",alumno);
+                        response.sendRedirect(request.getContextPath()+"/InicioServlet");
+                    }else{
+                        session.setAttribute("noExiste","Solo se permite la especialidad de Telecomunicaciones");
+                        response.sendRedirect(request.getContextPath());
+                    }
                 }else{
                     session.setAttribute("noExiste","Usuario o contraseña inválidos");
                     response.sendRedirect(request.getContextPath());
