@@ -17,6 +17,9 @@
 </jsp:include>
 
 <!-- Banner presentación -->
+<html>
+
+
 <div class="slider_carr">
     <ul>
         <li><img src="images/fondo1.jpg" alt=""></li>
@@ -26,3 +29,66 @@
     </ul>
 </div>
 <!---->
+<STYLE TYPE="text/css">
+    body{
+        font-family: Arial;
+    }
+    #main-container{
+        margin: 10px ;
+        width: 1200px;
+    }
+    table{
+        background-color: white;
+        text-align: center;
+        border-collapse: collapse;
+        width: 100%;
+        position: static;
+        left: 100%;
+
+        top: 300%;
+        margin-top: 1px;
+    }
+    th, td{
+        padding: 20px;
+    }
+    thead{
+        background-color: #000000;
+        border-bottom: solid 5px #353837;
+        color: white;
+    }
+    tr:nth-child(even){
+        background-color: #ddd;
+    }
+    tr:hover td{
+        background-color: #706e6e;
+        color: white;
+    }
+
+</STYLE>
+
+<br><br>
+<center>
+    <h1><b><font color="white">LISTA DE VIAJES</font> </b></h1>
+</center>
+
+<center>
+    <div id="main-container" >
+
+            <table>
+            <thead>
+            <tr>
+                <th>ID</th><th>Fecha de reserva</th><th>Cuidad origen</th><th> Ciudad destino</th><th>Empresa de seguro</th> <th>Numero de boletos</th><th>Costo total</th>
+            </tr>
+            </thead>
+            <tr>
+                <td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td>
+            </tr>
+            <tr>
+                <td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td><td>xdd</td>
+            </tr>
+
+        </table>
+    </div></center>
+
+
+</html>
