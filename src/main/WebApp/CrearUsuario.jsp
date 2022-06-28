@@ -75,15 +75,17 @@
                             </td>
                             <td>
                                 <div class="form-floating mb-3" width="100px">
-                                    <input type="password" name="pass" required="required" class="form-control"  placeholder="Reptir contraseña">
+                                    <input type="password" name="pass" required="required" class="form-control"  placeholder="Repetir contraseña">
                                     <label>Reptir contraseña</label>
                                 </div>
                             </td>
-                        </tr>
-                    </table>
-                </center>
 
-                <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(230%); background-color: black; color: #0d6efd">Registrarme</button>
+                        </tr>
+
+                    </table>
+                    <button type="submit" class="btn btn-danger rounded-pill botonInicio border border-primary" style= "align:center;background-color: black; color: #0d6efd">Registrarme</button>
+
+                </center>
 
             </form>
 
