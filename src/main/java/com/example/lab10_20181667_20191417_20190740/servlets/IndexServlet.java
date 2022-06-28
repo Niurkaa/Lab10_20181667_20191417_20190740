@@ -19,15 +19,18 @@ public class IndexServlet extends HttpServlet {
         String action = request.getParameter("action") == null ? "listar" : request.getParameter("action");
         ViajesDao viajesDao = new ViajesDao();
         HttpSession session= request.getSession();
-        BUsuario usuario = session.getAttribute("usuarioLog")== null? new BUsuario() : (BUsuario) session.getAttribute("usuarioLog");
-        String ciudadOrigen = request.getParameter("ciudad1") ;
-        String ciudadDestino = request.getParameter("ciudad2") ;
-        if(usuario.getIdUsuario()==0){
-            response.sendRedirect(request.getContextPath());
-        }else{
+        BUsuario usuario = (BUsuario) session.getAttribute("usuarioLog");
+
+        //Borramos caché
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setDateHeader("Expires", 0);
+        //Borramos caché
+
+        if(usuario!=null && usuario.getIdUsuario()!=0){
             switch (action){
                 case "listar":
-                    ArrayList<Viaje> viajes = viajesDao.listar(usuario.getIdUsuario(),ciudadOrigen,ciudadDestino);
+                    ArrayList<Viaje> viajes = viajesDao.listar(usuario.getIdUsuario(),"","");
                     request.setAttribute("viajes", viajes);
                     RequestDispatcher listar = request.getRequestDispatcher("index.jsp");
                     listar.forward(request, response);
@@ -53,76 +56,82 @@ public class IndexServlet extends HttpServlet {
                     response.sendRedirect(request.getContextPath() + "/IndexServlet");
                     break;
             }
+        }else{
+            response.sendRedirect(request.getContextPath());
         }
-
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
         String action = request.getParameter("action") == null ? "listar" : request.getParameter("action");
+        HttpSession session= request.getSession();
         ViajesDao viajesDao = new ViajesDao();
-        String id = request.getParameter("id") == null ? "1" : request.getParameter("id");
+        BUsuario usuario = (BUsuario) session.getAttribute("usuarioLog");
         String ciudadOrigen = request.getParameter("ciudad1");
         String ciudadDestino = request.getParameter("ciudad2") ;
-        switch (action){
-            case "buscar":
-                try {
-                    int id1 = Integer.parseInt(id);
-                    if (id1 != 0) {
-                        ArrayList<Viaje> viajes = viajesDao.listar(id1,ciudadOrigen,ciudadDestino);
-                        request.setAttribute("viajes", viajes);
-                        RequestDispatcher listar = request.getRequestDispatcher("index.jsp");
-                        listar.forward(request, response);
+
+        if(usuario!=null && usuario.getIdUsuario()!=0){
+            switch (action){
+                case "buscar":
+                    //Borramos caché
+                    response.setHeader("Pragma", "No-cache");
+                    response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+                    response.setDateHeader("Expires", 0);
+                    //Borramos caché
+
+                    ArrayList<Viaje> viajes = viajesDao.listar(usuario.getIdUsuario(),ciudadOrigen,ciudadDestino);
+                    session.setAttribute("ciudadDestino", ciudadDestino);
+                    session.setAttribute("ciudadOrigen", ciudadOrigen);
+                    request.setAttribute("viajes", viajes);
+                    RequestDispatcher listar = request.getRequestDispatcher("index.jsp");
+                    listar.forward(request, response);
+
+                    break;
+                case "crear":
+                    try {
+                        String fechaViaje = request.getParameter("fechaViaje");
+                        String fechaReserva = request.getParameter("fechaReserva");
+                        String idSeguro = request.getParameter("seguro");
+                        int seguro = Integer.parseInt(idSeguro);
+                        String boletos = request.getParameter("numBoletos");
+                        int numBoleto = Integer.parseInt(boletos);
+                        String costoTotal = request.getParameter("costo");
+                        double costo = Double.parseDouble(costoTotal);
+                        if (usuario.getIdUsuario() != 0) {
+                            viajesDao.anadir(fechaViaje, fechaReserva, seguro, numBoleto, costo, usuario.getIdUsuario(),ciudadDestino,ciudadOrigen);
+                            response.sendRedirect(request.getContextPath()+"/IndexServlet");
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error al convertir tipo de dato");
+                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error al convertir tipo de dato");
-                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
-                }
-                break;
-            case "crear":
-                try {
-                    String fechaViaje = request.getParameter("fechaViaje");
-                    String fechaReserva = request.getParameter("fechaReserva");
-                    String idSeguro = request.getParameter("seguro");
-                    int seguro = Integer.parseInt(idSeguro);
-                    String boletos = request.getParameter("numBoletos");
-                    int numBoleto = Integer.parseInt(boletos);
-                    String costoTotal = request.getParameter("costo");
-                    double costo = Double.parseDouble(costoTotal);
-                    int id1 = Integer.parseInt(id);
-                    if (id1 != 0) {
-                        viajesDao.anadir(fechaViaje, fechaReserva, seguro, numBoleto, costo, id1,ciudadDestino,ciudadOrigen);
+                    break;
+                case "actualizar":
+                    try {
+                        String idViaje = request.getParameter("idViaje");
+                        String fechaViaje = request.getParameter("fechaViaje");
+                        String fechaReserva = request.getParameter("fechaReserva");
+                        String idSeguro = request.getParameter("seguro");
+                        int seguro = Integer.parseInt(idSeguro);
+                        String boletos = request.getParameter("numBoletos");
+                        int numBoleto = Integer.parseInt(boletos);
+                        String costoTotal = request.getParameter("costo");
+                        double costo = Double.parseDouble(costoTotal);
+
+                        viajesDao.editar(idViaje, fechaViaje, fechaReserva, seguro, numBoleto, costo, usuario.getIdUsuario(),ciudadDestino,ciudadOrigen);
                         response.sendRedirect(request.getContextPath()+"/IndexServlet");
+
+                    } catch (NumberFormatException e) {
+                        System.out.println("Error al convertir tipo de dato");
+                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error al convertir tipo de dato");
-                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
-                }
-                break;
-            case "actualizar":
-                try {
-                    String idViaje = request.getParameter("idViaje");
-                    String fechaViaje = request.getParameter("fechaViaje");
-                    String fechaReserva = request.getParameter("fechaReserva");
-                    String idSeguro = request.getParameter("seguro");
-                    int seguro = Integer.parseInt(idSeguro);
-                    String boletos = request.getParameter("numBoletos");
-                    int numBoleto = Integer.parseInt(boletos);
-                    String costoTotal = request.getParameter("costo");
-                    double costo = Double.parseDouble(costoTotal);
-                    int id1 = Integer.parseInt(id);
-                    if (id1 != 0) {
-                        viajesDao.editar(idViaje, fechaViaje, fechaReserva, seguro, numBoleto, costo, id1,ciudadDestino,ciudadOrigen);
-                        response.sendRedirect(request.getContextPath()+"/IndexServlet");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Error al convertir tipo de dato");
-                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
-                }
-                break;
+                    break;
+            }
+        }else{
+            response.sendRedirect(request.getContextPath());
         }
+
     }
 
 }

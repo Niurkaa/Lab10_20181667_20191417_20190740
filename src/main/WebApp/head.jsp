@@ -12,6 +12,8 @@
     <link rel="shortcut icon" href="<%=request.getContextPath()%>/images/logo2.ico" type="image/x-icon">
     <title><%=request.getParameter("title")%>
     </title>
+
+
     <style>
 
         .container {

@@ -17,7 +17,8 @@
     <jsp:param name="page" value=""/>
 </jsp:include>
 <jsp:useBean id="viajes" scope="request" type="java.util.ArrayList<com.example.lab10_20181667_20191417_20190740.beans.Viaje>"/>
-
+<jsp:useBean id="ciudadOrigen" scope="session" type="java.lang.String" class="java.lang.String"/>
+<jsp:useBean id="ciudadDestino" scope="session" type="java.lang.String" class="java.lang.String"/>
 <!-- Banner presentación -->
 <html>
 
@@ -74,19 +75,19 @@
     <tr>
         <td >
             <div  class="cold md" >
-                <input class="form-control me-2" type="search" placeholder="Ingrese Origen" aria-label="Ingrese Origen" name = "ciudad1">
+                <input class="form-control me-2" type="search" value="<%=ciudadOrigen%>" placeholder="Ingrese Origen" aria-label="Ingrese Origen" name = "ciudad1">
             </div>
         </td>
 
         <td>
             <div  class="cold md" >
-                <input class="form-control me-2" type="search" placeholder="Ingrese Destino" aria-label="Ingrese Destino" name="ciudad2">
+                <input class="form-control me-2" type="search" value="<%=ciudadDestino%>" placeholder="Ingrese Destino" aria-label="Ingrese Destino" name="ciudad2">
             </div>
 
         </td>
+        <%session.removeAttribute("ciudadOrigen");session.removeAttribute("ciudadDestino");%>
         <td>
             <button  type="submit"
-
                 color="white"
                 class="btn btn-tele border-start-1"
                  ><b>Buscar</b></button>

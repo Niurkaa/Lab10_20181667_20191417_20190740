@@ -12,24 +12,15 @@ public class ViajesDao extends BaseDao {
 
     public ArrayList<Viaje> listar(int id, String ciudadOrigen, String ciudadDestino){
         ArrayList<Viaje> viajes = new ArrayList<>();
-        String sql = null;
-        if(ciudadOrigen==null || ciudadDestino==null) {
-            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario inner join seguro s on v.Seguro_idSeguro = s.idSeguro where u.idUsuario = ?";
-        }else {
-            sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario inner join seguro s on v.Seguro_idSeguro = s.idSeguro where (v.ciudadDestino like ? and v.ciudadOrigen like ?) and u.idUsuario = ?";
-        }
 
-        try (Connection conn = this.getConnection();
+        String sql = "select * from viaje v inner join usuario u on  u.idUsuario = v.Usuario_idUsuario inner join seguro s on v.Seguro_idSeguro = s.idSeguro where (v.ciudadDestino like ? and v.ciudadOrigen like ?) and u.idUsuario = ?";
+
+         try (Connection conn = this.getConnection();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-                if(ciudadOrigen==null || ciudadDestino==null) {
-                    pstmt.setInt(1, id);
-                }else {
-                    pstmt.setString(1, "%"+ciudadOrigen+"%");
-                    pstmt.setString(2,"%"+ciudadDestino+"%");
-                    pstmt.setInt(3, id);
-                }
-
+            pstmt.setString(1, "%"+ciudadDestino+"%");
+            pstmt.setString(2,"%"+ciudadOrigen+"%");
+            pstmt.setInt(3, id);
 
                 try (ResultSet resultSet = pstmt.executeQuery()) {
                     while (resultSet.next()) {

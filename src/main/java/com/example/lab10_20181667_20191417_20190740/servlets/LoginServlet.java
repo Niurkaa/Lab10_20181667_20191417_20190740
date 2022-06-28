@@ -13,26 +13,41 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action")==null ? "login" : request.getParameter("action");
-        HttpSession session= request.getSession();
         RequestDispatcher view;
-        switch (action){
-            case "logout":
+        HttpSession session= request.getSession();
+        BUsuario bUsuario= (BUsuario) session.getAttribute("usuarioLog");
+
+        //Borramos caché
+        response.setHeader("Pragma", "No-cache");
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+        response.setDateHeader("Expires", 0);
+        //Borramos caché
+
+        if(bUsuario != null){
+            if (action.equals("logout")) {
                 session.invalidate();
                 response.sendRedirect(request.getContextPath());
-                break;
-            case "login":
-                view= request.getRequestDispatcher("InicioSesion.jsp");
-                view.forward(request,response);
-                break;
-            case "register":
-                view = request.getRequestDispatcher("CrearUsuario.jsp");
-                view.forward(request,response);
+            }else{
+                response.sendRedirect(request.getContextPath()+"/IndexServlet");
+            }
+        }else{
+            switch (action){
+                case "login":
+                    view= request.getRequestDispatcher("InicioSesion.jsp");
+                    view.forward(request,response);
+                    break;
+                case "register":
+                    view = request.getRequestDispatcher("CrearUsuario.jsp");
+                    view.forward(request,response);
+            }
         }
+
 
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         String action= request.getParameter("action");
         LoginDao loginDao= new LoginDao();
         String pass;
