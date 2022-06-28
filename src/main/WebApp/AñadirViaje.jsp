@@ -63,6 +63,7 @@
                                 <option value="<%=seguro.getId()%>"  class="form-control"><%=seguro.getNombre()%></option>
                                 <%}%>
                             </select>
+                                <label> Seguro</label>
                             </div>
                         </td>
                     </tr>

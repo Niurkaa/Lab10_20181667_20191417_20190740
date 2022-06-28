@@ -68,6 +68,7 @@
                                 <option value="<%=seguro.getId()%>" <%=seguro.getNombre().equals(viaje.getSeguro().getNombre()) ?"selected" : ""%> class="form-control"><%=seguro.getNombre()%></option>
                                 <%}%>
                             </select>
+                            <label> Seguro</label>
                         </div>
                     </td>
                 </tr>
