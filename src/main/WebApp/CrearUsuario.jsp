@@ -26,7 +26,7 @@
     <div class="modal-content" style="background: black">
         <div class="modal-body" >
             <form class="form-signin" method="post" action="<%=request.getContextPath()%>/?action=register">
-                <a href=""  class="btn btn-danger rounded-pill botonInicio border border-primary" style= "align:left;background-color: black; color: #0d6efd">X</a>
+                <a href=" "  class="btn btn-danger rounded-pill botonInicio border border-primary" style= "transform: translateX(410px);background-color: black; color: #0d6efd">X</a>
 
                 <center>
                         <td><h4 class="d-flex justify-content-center" style="color:white">Registrarme</h4></td>

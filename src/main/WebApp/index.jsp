@@ -109,7 +109,7 @@
             </tr>
             </thead>
             <%for (Viaje viaje : viajes){%>
-            <tr>
+            <tr class="clase">
                 <td class="clase"><%=viaje.getId()%></td><td class="clase"><%=viaje.getFechaReserva()%></td><td class="clase"><%=viaje.getFechaViaje()%></td><td class="clase"><%=viaje.getCiudadOrigen()%></td><td class="clase"><%=viaje.getCiudadDestino()%></td><td class="clase"><%=viaje.getSeguro().getNombre()%></td><td class="clase"><%=viaje.getNumBoleto()%></td><td class="clase">S/. <%=viaje.getCosto()%></td>
                 <td> <button href="" type="submit"
                         name="Buscar"
@@ -127,7 +127,7 @@
 
         </table>
         <br><br>
-        <a  href="" type="submit"
+        <a  href="AñadirViajeServlet" type="submit"
         name="Buscar"
         color="white"
         class="btn btn-tele border-start-1"
