@@ -3,6 +3,7 @@ package com.example.lab10_20181667_20191417_20190740.servlets;
 import com.example.lab10_20181667_20191417_20190740.beans.BUsuario;
 import com.example.lab10_20181667_20191417_20190740.beans.Seguro;
 import com.example.lab10_20181667_20191417_20190740.beans.Viaje;
+import com.example.lab10_20181667_20191417_20190740.daos.LoginDao;
 import com.example.lab10_20181667_20191417_20190740.daos.ViajesDao;
 
 import javax.servlet.*;
@@ -41,11 +42,7 @@ public class IndexServlet extends HttpServlet {
                     RequestDispatcher agregar = request.getRequestDispatcher("AñadirViaje.jsp");
                     agregar.forward(request,response);
                     break;
-                case "eliminar":
-                    String idViaje1 = request.getParameter("idViaje");
-                    viajesDao.eliminar(idViaje1);
-                    response.sendRedirect(request.getContextPath() + "/IndexServlet");
-                    break;
+
             }
         }else{
             response.sendRedirect(request.getContextPath());
@@ -145,6 +142,20 @@ public class IndexServlet extends HttpServlet {
                     request.setAttribute("viaje",viaje);
                     RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
                     editar.forward(request,response);
+                    break;
+                case "eliminar":
+                    String idViaje1 = request.getParameter("idViaje");
+                    String pass=request.getParameter("pass");
+                    LoginDao loginDao= new LoginDao();
+
+                    if(loginDao.encontrarUsuario(usuario.getCorreo(), pass).getIdUsuario()!=0){
+                        viajesDao.eliminar(idViaje1);
+                        session.setAttribute("msg", "Contraseña Correcta");
+                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                    }else{
+                        session.setAttribute("msg", "Contraseña Incorrecta");
+                        response.sendRedirect(request.getContextPath() + "/IndexServlet");
+                    }
                     break;
             }
         }else{

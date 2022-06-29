@@ -128,7 +128,7 @@
                         color="white"
                         class="btn btn-tele border-start-1"><b>Editar</b></button> </td>
             </form>
-                <td> <a href="javascript:abrir()"
+                <td> <a href="javascript:abrir<%=viaje.getId()%>()"
                         type="submit"
                              color="white"
                              class="btn btn-tele border-start-1"
@@ -138,7 +138,17 @@
 
 
         </table>
-        <br><br>
+        <br>
+        <%if(session.getAttribute("msg")!=null && session.getAttribute("msg").equals("Contraseña Incorrecta")){%>
+        <div class="text-danger mb-2"><%=session.getAttribute("msg")%>!</div>
+        <%session.removeAttribute("msg");%>
+        <%}%>
+
+        <%if(session.getAttribute("msg")!=null && session.getAttribute("msg").equals("Contraseña Correcta")){%>
+        <div class="text-success mb-2">Se eliminó viaje correctamente!</div>
+        <%session.removeAttribute("msg");%>
+        <%}%>
+        <br>
         <a  href="<%=request.getContextPath()%>/IndexServlet?action=agregar" type="button"
         name="Buscar"
         color="white"
@@ -146,32 +156,36 @@
         ><b>Añadir Viaje</b></a>
 
     </div></center>
-
-    <div class="delete" id="dele">
-        <div id="cerrar"><a href="javascript:cerrar()"><img width="20px" height="20px" src="images/x.png"></a></div>
+    <%for (Viaje viaje : viajes){%>
+    <div class="delete" id="dele<%=viaje.getId()%>">
+        <div id="cerrar"><a href="javascript:cerrar<%=viaje.getId()%>()"><img width="20px" height="20px" src="images/x.png"></a></div>
     <center>
-        <h5>¿Está seguro que desea eliminar este viaje (ID:12345678) ?</h5>
+        <h5>¿Está seguro que desea eliminar este viaje (ID:<%=viaje.getId()%>) ?</h5>
         <br>
-        <h6>Si es asi, Ingrese su contraseña para confirmar: </h6>
+        <h6>Si es así, Ingrese su contraseña para confirmar: </h6>
+        <form method="post" action="<%=request.getContextPath()%>/IndexServlet?action=eliminar">
+            <input type="hidden" value="<%=viaje.getId()%>" name="idViaje">
         <div class="modal-body" >
         <div  class="cold md" >
             <input type="password" name="pass" required="required" class="form-control" id="floatingInput2" placeholder="Password">
         </div></div>
         <div>
-        <a  type="submit"
+        <button  type="submit"
                   name="delete"
                   class="btn btn-tele border-start-1"
-                 > Eliminar </a></div></center>
+                 > Eliminar </button></div></center>
+        </form>
+    </div>
+    <script>
+        function abrir<%=viaje.getId()%>() {
+            document.getElementById("dele<%=viaje.getId()%>").style.display="block";
+        }
+        function cerrar<%=viaje.getId()%>() {
+            document.getElementById("dele<%=viaje.getId()%>").style.display="none";
+        }
+    </script>
+    <%}%>
 
-</div>
-<script>
-    function abrir() {
-        document.getElementById("dele").style.display="block";
-    }
-    function cerrar() {
-        document.getElementById("dele").style.display="none";
-    }
-</script>
 
 
 </html>
