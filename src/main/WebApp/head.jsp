@@ -147,6 +147,22 @@
             outline: 0;
         }
 
+        .delete {
+
+            Background: #525252;
+            width:35%;
+            color:#dddddd;
+            font-family: Arial;
+            font-size: 18px;
+            text-align:center;
+            padding: 33px;
+            min-height: 100px;
+            border-radius: 10px;
+            left:33%;
+            top:200px;
+            position: fixed;
+            display: none;
+        }
 
 
 

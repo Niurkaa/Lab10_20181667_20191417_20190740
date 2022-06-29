@@ -36,6 +36,11 @@
     body{
         font-family: Arial;
     }
+    #cerrar {
+        position:absolute;
+        right:4px;
+        top:2px
+    }
     #main-container{
         margin: 10px ;
         width: 1200px;
@@ -121,12 +126,11 @@
                         color="white"
                         class="btn btn-tele border-start-1"
             ><b>Editar</b></a> </td>
-                <td> <button href="<%=request.getContextPath()%>/IndexServlet?action=eliminar&idViaje=<%=viaje.getId()%>"
-                        type="button"
-                             name="Buscar"
+                <td> <a href="javascript:abrir()"
+                        type="submit"
                              color="white"
                              class="btn btn-tele border-start-1"
-                ><b>Eliminar</b></button> </td>
+                ><b>Eliminar</b></a> </td>
             </tr>
             <%}%>
 
@@ -140,6 +144,32 @@
         ><b>Añadir Viaje</b></a>
 
     </div></center>
+
+    <div class="delete" id="dele">
+        <div id="cerrar"><a href="javascript:cerrar()"><img width="20px" height="20px" src="images/x.png"></a></div>
+    <center>
+        <h5>¿Está seguro que desea eliminar este viaje (ID:12345678) ?</h5>
+        <br>
+        <h6>Si es asi, Ingrese su contraseña para confirmar: </h6>
+        <div class="modal-body" >
+        <div  class="cold md" >
+            <input type="password" name="pass" required="required" class="form-control" id="floatingInput2" placeholder="Password">
+        </div></div>
+        <div>
+        <a  type="submit"
+                  name="delete"
+                  class="btn btn-tele border-start-1"
+                 > Eliminar </a></div></center>
+
+</div>
+<script>
+    function abrir() {
+        document.getElementById("dele").style.display="block";
+    }
+    function cerrar() {
+        document.getElementById("dele").style.display="none";
+    }
+</script>
 
 
 </html>
