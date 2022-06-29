@@ -29,7 +29,7 @@
             position: fixed;
             width: 100%;
             padding: 30px 10px;
-            background-color: rgb(0, 0, 0) !important;
+            background-color: rgb(0, 0, 0);
         }
 
         body{

@@ -33,8 +33,9 @@
             <form method="post" action="<%=request.getContextPath()%>/IndexServlet?action=actualizar">
                 <a href="<%=request.getContextPath()%>/IndexServlet"   class="btn btn-danger rounded-pill botonInicio border border-primary" style="transform: translateX(410px);background-color: black; color: #0d6efd">X</a>
                 <h4 class="d-flex justify-content-center" style="color:white">Editar Viaje</h4>
+                <input type="hidden" value="<%=viaje.getId()%>" name="idViaje">
                 <tr>
-                    <td>0
+                    <td>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" name="ciudad1" value="<%=viaje.getCiudadOrigen()%>" required>
                             <label>Ciudad de Origen</label>

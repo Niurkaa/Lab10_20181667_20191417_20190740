@@ -41,15 +41,6 @@ public class IndexServlet extends HttpServlet {
                     RequestDispatcher agregar = request.getRequestDispatcher("AñadirViaje.jsp");
                     agregar.forward(request,response);
                     break;
-                case "editar":
-                    String idViaje = (String) session.getAttribute("idViaje");
-                    ArrayList<Seguro> seguro = viajesDao.listarS();
-                    Viaje viaje = viajesDao.buscarViajePorId(idViaje);
-                    request.setAttribute("listaSeguros",seguro);
-                    request.setAttribute("viaje",viaje);
-                    RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
-                    editar.forward(request,response);
-                    break;
                 case "eliminar":
                     String idViaje1 = request.getParameter("idViaje");
                     viajesDao.eliminar(idViaje1);
@@ -70,7 +61,7 @@ public class IndexServlet extends HttpServlet {
         BUsuario usuario = (BUsuario) session.getAttribute("usuarioLog");
         String ciudadOrigen = request.getParameter("ciudad1");
         String ciudadDestino = request.getParameter("ciudad2") ;
-
+        String idViaje;
         if(usuario!=null && usuario.getIdUsuario()!=0){
             switch (action){
                 case "buscar":
@@ -113,8 +104,9 @@ public class IndexServlet extends HttpServlet {
                     }
                     break;
                 case "actualizar":
+                    idViaje = request.getParameter("idViaje");
+                    ArrayList<Seguro> seguro0;
                     try {
-                        String idViaje = (String) session.getAttribute("idViaje");
                         String fechaViaje = request.getParameter("fechaViaje");
                         String fechaReserva = request.getParameter("fechaReserva");
                         String idSeguro = request.getParameter("seguro");
@@ -128,12 +120,31 @@ public class IndexServlet extends HttpServlet {
                             response.sendRedirect(request.getContextPath()+"/IndexServlet");
                         }else{
                             session.setAttribute("msg", "Costo Total inválido");
-                            response.sendRedirect(request.getContextPath()+"/IndexServlet?action=editar");
+                            seguro0= viajesDao.listarS();
+                            Viaje viaje = viajesDao.buscarViajePorId(idViaje);
+                            request.setAttribute("listaSeguros",seguro);
+                            request.setAttribute("viaje",viaje);
+                            RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
+                            editar.forward(request,response);
                         }
                     } catch (NumberFormatException e) {
                         session.setAttribute("msg", "Costo Total inválido");
-                        response.sendRedirect(request.getContextPath()+"/IndexServlet?action=editar");
+                        seguro0 = viajesDao.listarS();
+                        Viaje viaje = viajesDao.buscarViajePorId(idViaje);
+                        request.setAttribute("listaSeguros",seguro0);
+                        request.setAttribute("viaje",viaje);
+                        RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
+                        editar.forward(request,response);
                     }
+                    break;
+                case "editar":
+                    idViaje = request.getParameter("idViaje");
+                    ArrayList<Seguro> seguro = viajesDao.listarS();
+                    Viaje viaje = viajesDao.buscarViajePorId(idViaje);
+                    request.setAttribute("listaSeguros",seguro);
+                    request.setAttribute("viaje",viaje);
+                    RequestDispatcher editar = request.getRequestDispatcher("EditarViaje.jsp");
+                    editar.forward(request,response);
                     break;
             }
         }else{
